@@ -10,8 +10,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EmailController = void 0;
-const EmailService_1 = require("../services/EmailService");
 const logger_1 = require("../logger");
+const EmailService_1 = require("../services/email/EmailService");
 class EmailController {
     constructor() {
         this.emailService = EmailService_1.EmailService.getInstance();

@@ -1,6 +1,7 @@
 import { body, validationResult } from "express-validator";
 import { Request, Response, NextFunction } from "express";
 import axios from "axios";
+import { httpLogger } from "../logger";
 
 export class EmailValidator {
   static validateSendEmail() {
@@ -32,7 +33,7 @@ export class EmailValidator {
     }
 
     const recaptchaResponse = req.body["g-recaptcha-response"];
-    const recaptchaSecretKey = process.env.RECAPTCHA_SECRET_KEY;
+    const recaptchaSecretKey = process.env.RECAPTCHA_SITE_KEY;
 
     if (!recaptchaResponse || !recaptchaSecretKey) {
       return res.status(400).json({ error: "reCAPTCHA validation failed" });
@@ -50,7 +51,7 @@ export class EmailValidator {
 
       next();
     } catch (error) {
-      console.error("reCAPTCHA verification error:", error);
+      httpLogger.error("reCAPTCHA verification error:", error);
       return res.status(500).json({ error: "Internal Server Error" });
     }
   }

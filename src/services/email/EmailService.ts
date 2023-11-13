@@ -1,6 +1,6 @@
 import { SendMailOptions } from "nodemailer";
 import { IEmailStrategy } from "./interfaces";
-import { httpLogger } from "../logger";
+import { httpLogger } from "../../logger";
 
 export class EmailService {
   private static instance: EmailService;

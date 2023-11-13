@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.EmailValidator = void 0;
 const express_validator_1 = require("express-validator");
 const axios_1 = __importDefault(require("axios"));
+const logger_1 = require("../logger");
 class EmailValidator {
     static validateSendEmail() {
         return [
@@ -59,7 +60,7 @@ class EmailValidator {
                 next();
             }
             catch (error) {
-                console.error("reCAPTCHA verification error:", error);
+                logger_1.httpLogger.error("reCAPTCHA verification error:", error);
                 return res.status(500).json({ error: "Internal Server Error" });
             }
         });

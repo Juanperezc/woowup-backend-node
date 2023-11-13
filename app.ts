@@ -8,9 +8,10 @@ import swaggerUi from 'swagger-ui-express';
 import swaggerSpec from './src/swagger';
 import indexRouter from './src/routes/index';
 import apiRouter from './src/routes/api';
-import { EmailService } from './src/services/EmailService';
-import { TransporterFactory } from './src/services/TransporterFactory';
-import { NodemailerStrategy } from './src/services/email/NodeMailerStrategy';
+
+import { NodemailerStrategy } from './src/services/email/strategies/NodeMailerStrategy';
+import { EmailService } from './src/services/email/EmailService';
+import { TransporterFactory } from './src/services/email/TransporterFactory';
 dotenv.config();
 
 const app: Express = express();

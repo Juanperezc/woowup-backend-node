@@ -10,6 +10,7 @@ export class TransporterFactory {
         return nodemailer.createTransport({
           service: "SendGrid",
           host: "smtp.sendgrid.net",
+          port: 587,
           auth: credentials,
         });
       case "Mailgun":

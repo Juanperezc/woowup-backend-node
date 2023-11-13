@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EmailService = void 0;
-const logger_1 = require("../logger");
+const logger_1 = require("../../logger");
 class EmailService {
     constructor() {
         this.strategies = [];

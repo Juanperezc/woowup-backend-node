@@ -1,7 +1,8 @@
 import { Request, Response } from 'express';
-import { EmailService } from '../services/EmailService';
+
 import { httpLogger } from '../logger';
 import Mail from 'nodemailer/lib/mailer';
+import { EmailService } from '../services/email/EmailService';
 
 
 export class EmailController {
