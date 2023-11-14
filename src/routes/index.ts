@@ -4,7 +4,7 @@ const router = express.Router();
 
 /* GET home page. */
 router.get("/", (req: Request, res: Response, next: NextFunction) => {
-  res.render("index", { title: "Express" });
+  res.json({ message: "Welcome to the WoowUp Email Service API" });
 });
 
 export default router;

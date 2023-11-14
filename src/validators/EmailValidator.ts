@@ -1,7 +1,7 @@
 import { body, validationResult } from "express-validator";
 import { Request, Response, NextFunction } from "express";
-import axios from "axios";
 import { httpLogger } from "../logger";
+const axios = require("axios");
 
 export class EmailValidator {
   static validateSendEmail() {
@@ -33,7 +33,7 @@ export class EmailValidator {
     }
 
     const recaptchaResponse = req.body["g-recaptcha-response"];
-    const recaptchaSecretKey = process.env.RECAPTCHA_SITE_KEY;
+    const recaptchaSecretKey = process.env.RECAPTCHA_SECRET_KEY;
 
     if (!recaptchaResponse || !recaptchaSecretKey) {
       return res.status(400).json({ error: "reCAPTCHA validation failed" });
@@ -42,7 +42,6 @@ export class EmailValidator {
     try {
       const recaptchaVerifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${recaptchaSecretKey}&response=${recaptchaResponse}`;
       const response = await axios.post(recaptchaVerifyUrl);
-
       if (!response.data.success) {
         return res
           .status(401)
