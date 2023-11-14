@@ -1,4 +1,3 @@
-
 import { SendMailOptions, Transporter } from 'nodemailer';
 import { NodemailerStrategy } from './NodeMailerStrategy';
 

@@ -1,4 +1,4 @@
-import express, { Express, Request, Response, NextFunction } from 'express';
+import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
 import path from 'path';
 import cookieParser from 'cookie-parser';
@@ -12,15 +12,22 @@ import apiRouter from './src/routes/api';
 import { NodemailerStrategy } from './src/services/email/strategies/NodeMailerStrategy';
 import { EmailService } from './src/services/email/EmailService';
 import { TransporterFactory } from './src/services/email/TransporterFactory';
+import { rateLimit } from 'express-rate-limit';
 
 dotenv.config();
 
 const app: Express = express();
 
+const corsOptions = {
+  origin: ['http://localhost:3000', 'https://woowup-frontend-assessment.vercel.app'],
+};
 
-let corsOptions = { 
-   origin : ['http://localhost:3000', 'https://woowup-frontend-assessment.vercel.app'], 
-} 
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
+  standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+  legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+});
 
 // Middleware
 app.use(cors(corsOptions));
@@ -42,16 +49,18 @@ app.use('/', indexRouter);
 app.use('/api/v1', apiRouter);
 
 // Catch 404 and forward to error handler
-app.use((req: Request, res: Response, next: NextFunction) => {
+app.use((req: Request, res: Response) => {
   res.status(404).json({ error: 'Not Found' });
 });
 
 // Error handler
-app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+app.use((err: any, req: Request, res: Response) => {
   res.status(err.status || 500);
   res.json({ error: err.message || 'Internal Server Error' });
 });
 
+// Apply the rate limiting middleware to all requests
+app.use(limiter);
 
 // Email service setup
 const emailService = EmailService.getInstance();

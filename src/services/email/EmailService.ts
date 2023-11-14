@@ -1,6 +1,6 @@
-import { SendMailOptions } from "nodemailer";
-import { IEmailStrategy } from "./interfaces";
-import { httpLogger } from "../../logger";
+import { SendMailOptions } from 'nodemailer';
+import { IEmailStrategy } from './interfaces';
+import { httpLogger } from '../../logger';
 
 export class EmailService {
   private static instance: EmailService;
@@ -25,12 +25,12 @@ export class EmailService {
     for (const strategy of this.strategies) {
       try {
         await strategy.sendMail(options);
-        httpLogger.info("Email sent successfully");
+        httpLogger.info('Email sent successfully');
         return;
       } catch (error) {
-        httpLogger.error("Failed with current strategy, trying next...", error);
+        httpLogger.error('Failed with current strategy, trying next...', error);
       }
     }
-    throw new Error("All strategies failed to send email");
+    throw new Error('All strategies failed to send email');
   }
 }

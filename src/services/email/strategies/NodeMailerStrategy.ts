@@ -1,5 +1,5 @@
-import { SendMailOptions, Transporter } from "nodemailer";
-import { IEmailStrategy } from "../interfaces";
+import { SendMailOptions, Transporter } from 'nodemailer';
+import { IEmailStrategy } from '../interfaces';
 
 export class NodemailerStrategy implements IEmailStrategy {
   private transporter: Transporter;

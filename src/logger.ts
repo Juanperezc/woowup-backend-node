@@ -9,7 +9,7 @@ export const httpLogger = winston.createLogger({
     printf(({ timestamp, level, message, ...data }) => {
       const response = { level, timestamp, message, data };
       return JSON.stringify(response);
-    })
+    }),
   ),
   transports: [new winston.transports.Console()],
 });

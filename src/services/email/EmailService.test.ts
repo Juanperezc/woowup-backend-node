@@ -28,7 +28,9 @@ describe('EmailService', () => {
   });
 
   it('should send email using the first strategy', async () => {
-    const mailOptions: SendMailOptions = { /* ... */ };
+    const mailOptions: SendMailOptions = {
+      /* ... */
+    };
     mockStrategy1.sendMail.mockResolvedValue(undefined);
 
     await emailService.sendMail(mailOptions);
@@ -38,7 +40,9 @@ describe('EmailService', () => {
   });
 
   it('should fallback to the second strategy if the first fails', async () => {
-    const mailOptions: SendMailOptions = { /* ... */ };
+    const mailOptions: SendMailOptions = {
+      /* ... */
+    };
     mockStrategy1.sendMail.mockRejectedValue(new Error('Failed'));
     mockStrategy2.sendMail.mockResolvedValue(undefined);
 
@@ -49,7 +53,9 @@ describe('EmailService', () => {
   });
 
   it('should throw an error if all strategies fail', async () => {
-    const mailOptions: SendMailOptions = { /* ... */ };
+    const mailOptions: SendMailOptions = {
+      /* ... */
+    };
     mockStrategy1.sendMail.mockRejectedValue(new Error('Failed'));
     mockStrategy2.sendMail.mockRejectedValue(new Error('Failed'));
 
@@ -58,5 +64,4 @@ describe('EmailService', () => {
     expect(mockStrategy1.sendMail).toHaveBeenCalledWith(mailOptions);
     expect(mockStrategy2.sendMail).toHaveBeenCalledWith(mailOptions);
   });
-
 });

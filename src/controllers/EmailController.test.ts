@@ -26,12 +26,12 @@ describe('EmailController', () => {
       body: {
         title: 'Test Email',
         text: '<p>This is a test email</p>',
-        emailAddresses: ['test@example.com']
-      }
+        emailAddresses: ['test@example.com'],
+      },
     };
     const res: Partial<Response> = {
       status: jest.fn().mockReturnThis(),
-      json: jest.fn()
+      json: jest.fn(),
     };
 
     // Mock implementation of sendMail
@@ -51,12 +51,12 @@ describe('EmailController', () => {
       body: {
         title: 'Test Email',
         text: '<p>This is a test email</p>',
-        emailAddresses: ['test@example.com']
-      }
+        emailAddresses: ['test@example.com'],
+      },
     };
     const res: Partial<Response> = {
       status: jest.fn().mockReturnThis(),
-      json: jest.fn()
+      json: jest.fn(),
     };
 
     // Mock implementation to throw an error

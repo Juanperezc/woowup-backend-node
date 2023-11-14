@@ -1,6 +1,6 @@
-import express from "express";
-import { EmailController } from "../controllers/EmailController";
-import { EmailValidator } from "../validators/EmailValidator";
+import express from 'express';
+import { EmailController } from '../controllers/EmailController';
+import { EmailValidator } from '../validators/EmailValidator';
 
 const router = express.Router();
 
@@ -45,6 +45,5 @@ const emailController = new EmailController();
  *         description: Bad request due to invalid input or failed reCAPTCHA verification
  */
 router.post('/send-mail-failover', EmailValidator.validateSendEmail(), EmailValidator.validate, emailController.sendEmail);
-
 
 export default router;
