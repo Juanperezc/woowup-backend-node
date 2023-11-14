@@ -92,7 +92,6 @@ In addition to the clear separation of concerns between the front-end and back-e
 The backend architecture of the project is designed to leverage AWS services, particularly Serverless and Lambda, for efficient, scalable, and cost-effective operations.
 
 ![AWS Architecture](aws-architecture.png)
-
 ### Clarity
 
 The README provides a clear explanation of the project setup and its functionalities. It outlines the problem being solved, mainly focused on email services, and how the solution is implemented. Technical tradeoffs, if any, should be clearly documented, explaining why certain decisions were made.
